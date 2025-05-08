@@ -1,1 +1,112 @@
-# finance-report-analyst
+# Finance Report Analyst
+
+Ứng dụng phân tích báo cáo tài chính với giao diện Streamlit cho phép người dùng tải lên và phân tích các file tài chính ở định dạng CSV, Excel và PDF. Ứng dụng sử dụng trí tuệ nhân tạo để phân tích báo cáo và đưa ra những hiểu biết có giá trị từ dữ liệu tài chính.
+
+## Tính năng
+
+- Upload file CSV, Excel (xls/xlsx) hoặc PDF
+- Hiển thị nội dung file dưới dạng bảng dữ liệu hoặc văn bản
+- Phân tích tự động với AI các báo cáo tài chính
+- Tổng hợp dữ liệu từ nhiều báo cáo
+- Báo cáo chi tiết có cấu trúc với thông tin trích xuất từ các tài liệu tài chính
+- Giao diện người dùng trực quan và chuyên nghiệp
+
+## Công nghệ sử dụng
+
+- **Streamlit**: Framework giao diện người dùng trực quan
+- **LangChain/LangGraph**: Xây dựng luồng công việc AI và chuỗi công cụ phân tích
+- **OpenAI/Google Gemini**: Mô hình ngôn ngữ lớn để phân tích báo cáo tài chính
+- **Pandas**: Xử lý dữ liệu dạng bảng từ file CSV và Excel
+- **PyPDF2**: Trích xuất nội dung từ file PDF
+
+## Cài đặt
+
+1. Clone repository:
+```bash
+git clone https://github.com/yourusername/finance-report-analyst.git
+cd finance-report-analyst
+```
+
+2. Cài đặt các thư viện cần thiết:
+```bash
+pip install -r requirements.txt
+```
+
+3. Cấu hình:
+   - Tạo file cấu hình dựa trên mẫu `settings/config.example.yml`
+   - Thêm API key cho các dịch vụ AI (OpenAI hoặc Google Gemini)
+
+## Cách sử dụng
+
+1. Chạy ứng dụng Streamlit:
+```bash
+streamlit run src/app.py
+```
+
+2. Truy cập ứng dụng qua trình duyệt (mặc định tại http://localhost:8501)
+
+3. Upload file CSV, Excel hoặc PDF
+
+4. Tùy chọn thêm yêu cầu phân tích cụ thể
+
+5. Nhấn nút "Phân tích tất cả files" để bắt đầu phân tích
+
+6. Xem kết quả chi tiết từng file và báo cáo tổng hợp
+
+## Luồng phân tích
+
+Ứng dụng xử lý các báo cáo tài chính theo quy trình:
+
+1. **Thu thập dữ liệu**: Upload và trích xuất nội dung từ các file
+2. **Phân tích từng báo cáo**: Sử dụng AI để phân tích từng báo cáo riêng biệt
+3. **Tổng hợp kết quả**: Kết hợp thông tin từ tất cả các báo cáo để tạo báo cáo tổng hợp
+4. **Hiển thị kết quả**: Trình bày kết quả dưới dạng báo cáo có cấu trúc và trực quan
+
+## Cấu trúc dự án
+
+```
+finance-report-analyst/
+├── README.md
+├── requirements.txt
+├── configs/              # Cấu hình dự án
+│   ├── config.py         # Module cấu hình chính
+│   └── config_loader/    # Bộ đọc cấu hình (YAML, JSON)
+├── settings/             # Cài đặt và file cấu hình
+│   └── config.example.yml # File cấu hình mẫu
+└── src/
+    ├── app.py            # Giao diện Streamlit
+    ├── graph/            # Xử lý luồng công việc với LangGraph
+    │   ├── state.py      # Định nghĩa trạng thái của luồng công việc
+    │   └── workflow.py   # Định nghĩa luồng công việc phân tích
+    ├── nodes/            # Các node xử lý AI
+    │   ├── html_generator/  # Tạo báo cáo HTML
+    │   ├── report_analysis/ # Phân tích từng báo cáo
+    │   └── report_synthesis/ # Tổng hợp từ các báo cáo
+    ├── tools/            # Công cụ hỗ trợ cho AI
+    │   └── report_analysis_tools/ # Công cụ phân tích báo cáo
+    └── utils/            # Tiện ích
+        ├── file_handler.py  # Xử lý file đơn
+        └── multi_file_handler.py  # Xử lý nhiều file
+```
+
+## Tùy chỉnh
+
+Bạn có thể tùy chỉnh ứng dụng bằng cách:
+
+- Chỉnh sửa file `settings/config.yml` để thay đổi mô hình AI hoặc tham số
+- Thêm công cụ mới vào thư mục `src/tools/`
+- Chỉnh sửa các prompt trong thư mục `src/nodes/*/prompts.py`
+
+## Yêu cầu hệ thống
+
+- Python 3.7+
+- Kết nối internet (để sử dụng API của OpenAI hoặc Google)
+- Các thư viện trong requirements.txt
+
+## Đóng góp
+
+Mọi đóng góp đều được hoan nghênh! Vui lòng mở issue hoặc pull request nếu bạn muốn cải thiện dự án.
+
+## Giấy phép
+
+Phiên bản 1.0.0 | © 2025 | Developed by Finance Analytics Team

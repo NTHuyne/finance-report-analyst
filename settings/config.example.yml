@@ -1,0 +1,17 @@
+llm_configs:
+  gpt-4o-mini:
+    api_key: ""
+  
+  gpt-4o:
+    api_key: ""
+  
+  gemini-2.5-flash-preview-04-17:
+    api_key: ""
+
+  llama-3.3:
+    api_key: ""
+    base_url: ""
+  
+llm_params:
+  model: gpt-4o-mini
+  temperature: 0
