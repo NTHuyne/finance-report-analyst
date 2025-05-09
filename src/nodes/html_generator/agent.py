@@ -1,5 +1,6 @@
 from langchain_openai import ChatOpenAI
 from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_anthropic import ChatAnthropic
 from src.graph.state import GraphState
 from configs.config import settings
 from src.nodes.html_generator.prompts import code_generator_instruction, code_generator_prompt_template, system_prompt
@@ -19,6 +20,11 @@ class HTMLGeneratorAgent:
             )
         elif "gemini" in self.model_name:
             self.model = ChatGoogleGenerativeAI(
+                **settings.CONF["llm_configs"][self.model_name],
+                **settings.CONF["llm_params"]
+            )
+        elif "claude" in self.model_name:
+            self.model = ChatAnthropic(
                 **settings.CONF["llm_configs"][self.model_name],
                 **settings.CONF["llm_params"]
             )

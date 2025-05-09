@@ -89,7 +89,8 @@ def sidebar_navigation():
             "llama-3.3",
             "qwen3-30b-a3b",
             "llama-4-scout",
-            "gemini-2.5-flash-preview-04-17"
+            "gemini-2.5-flash-preview-04-17",
+            "claude-3-7-sonnet-20250219"
         ]
         
         # Hiển thị dropdown để chọn model

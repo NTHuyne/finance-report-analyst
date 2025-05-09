@@ -1,3 +1,4 @@
+from langchain_anthropic import ChatAnthropic
 from langgraph.prebuilt import create_react_agent
 from langchain_openai import ChatOpenAI
 from langchain_google_genai import ChatGoogleGenerativeAI
@@ -21,6 +22,11 @@ class ReportSynthesisAgent:
             )
         elif "gemini" in self.model_name:
             self.model = ChatGoogleGenerativeAI(
+                **settings.CONF["llm_configs"][self.model_name],
+                **settings.CONF["llm_params"]
+            )
+        elif "claude" in self.model_name:
+            self.model = ChatAnthropic(
                 **settings.CONF["llm_configs"][self.model_name],
                 **settings.CONF["llm_params"]
             )
