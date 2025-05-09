@@ -1,5 +1,5 @@
 from langgraph.graph import END, StateGraph, START
-from src.nodes import ReportAnalysisAgent, ReportSynthesisAgent
+from src.nodes import ReportAnalysisAgent, ReportSynthesisAgent, HTMLGeneratorAgent
 from src.graph.state import GraphState
 from langgraph.types import Command
 
@@ -14,6 +14,7 @@ class MultiFileWorkflow:
         self.workflow.add_node("agent", ReportAnalysisAgent().agent_async)
         self.workflow.add_node("next_file", self.process_next_file)
         self.workflow.add_node("synthesis", ReportSynthesisAgent().agent_async)
+        self.workflow.add_node("html_generator", HTMLGeneratorAgent().agent_async)
 
         # add edges
         self.workflow.add_edge(START, "agent")
@@ -40,7 +41,7 @@ class MultiFileWorkflow:
         # Cập nhật chỉ số file hiện tại và files đã cập nhật
         updated_state = {
             "current_file_index": next_index,
-            "files": files
+            "files": files,
         }
         
         # Nếu còn file để xử lý, chuẩn bị nội dung file

@@ -78,6 +78,9 @@ Generate the final report **in Vietnamese**, strictly adhering to the following 
 *Tone: Professional, objective, analytical, suitable for business executives or financial stakeholders.*
 *Conventions: No conversational greetings or closings.*
 
+# Additional User Requirements:
+{requirement}
+
 # Financial Reports to synthesize:
 {file_content}
 """

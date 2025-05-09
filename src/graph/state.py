@@ -12,3 +12,5 @@ class GraphState(TypedDict):
     current_file_index: int
     file_analysis: Any
     synthesis_result: str
+    html_report: str
+    requirement: str

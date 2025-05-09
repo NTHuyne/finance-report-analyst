@@ -35,6 +35,7 @@ class ReportSynthesisAgent:
             model=self.model,
             tools=self.tools,
             state_modifier=report_synthesis_prompt_template,
+            version="v2",
             debug=False
         )
 
@@ -46,18 +47,24 @@ class ReportSynthesisAgent:
                 if file_analysis:
                     file_to_synthesis += f"File {file['file_name']}:\nTitle: {file_analysis.heading}\nSummary: {file_analysis.summary}\nDetail_analysis: {file_analysis.analysis_detail}\n\n"
 
-            response = await self.agent.ainvoke(input = {"messages": [("user", report_synthesis_instruction.format(file_content=file_to_synthesis))]})
+            if state["requirement"]:
+                requirement = state["requirement"]
+            else:
+                requirement = "None"
+
+            response = await self.agent.ainvoke(input = {"messages": [("user", report_synthesis_instruction.format(requirement=requirement, file_content=file_to_synthesis))]})
         
             return Command(
-                goto=END,
+                goto="html_generator",
                 update={
-                    **state,
                     "synthesis_result": response['messages'][-1].content
                 }
             )
+        
         except Exception as e:
-            print(f"Error in agent_async: {e}")
-            return {
-                **state,
-                "synthesis_result": [],
-            }
+            return Command(
+                goto="report_synthesis",
+                update={
+                    "synthesis_result": ""
+                }
+            )

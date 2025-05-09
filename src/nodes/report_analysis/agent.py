@@ -31,6 +31,7 @@ class ReportAnalysisAgent:
             )
 
         self.tools = []
+
         self.agent = create_react_agent(
             model=self.model,
             tools=self.tools,
@@ -51,8 +52,13 @@ class ReportAnalysisAgent:
                     "current_file_index": state["current_file_index"],
                 }
             )
+        
         except Exception as e:
             print(f"Error in agent_async: {e}")
-            return {
-                "file_analysis": [],
-            }
+            return Command(
+                goto="next_file",
+                update={
+                    "file_analysis": None,
+                    "current_file_index": state["current_file_index"]-1,
+                }
+            )
