@@ -1,0 +1,39 @@
+llm_configs:
+  gemini-2.5-flash-preview-04-17:
+    api_key: 
+    temperature: 
+
+  gpt-4.1:
+    api_key: 
+    temperature: 
+
+  gpt-4o:
+    api_key: 
+    temperature: 
+
+  gpt-4o-mini:
+    api_key: 
+    temperature: 
+
+  llama-3.3:
+    api_key: 
+    base_url: 
+    temperature: 
+
+  llama-4-scout:
+    api_key: 
+    base_url: 
+    temperature: 
+
+  qwen3-30b-a3b:
+    api_key: 
+    base_url: 
+    temperature: 
+  
+  claude-3-7-sonnet-20250219:
+    api_key: 
+    temperature: 
+
+  
+llm_params:
+  model: 
